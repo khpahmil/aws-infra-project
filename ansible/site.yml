@@ -1,0 +1,12 @@
+
+- name: Provision EC2
+  hosts: tag_Name_my-ec2
+  become: true
+  tasks:
+    - name: Update apt cache
+      apt: update_cache=yes
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
