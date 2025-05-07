@@ -1,5 +1,5 @@
 resource "aws_instance" "example" {
-  ami           = "ami-000299ebf4e16ca07"  # Pastikan AMI ID ini valid untuk region kamu
+  ami           = "ami-0c02fb55956c7d316"  # Pastikan AMI ID ini valid untuk region kamu
   instance_type = "t2.micro"
 
   key_name      = "pahmil"  # Pastikan key pair ini sudah ada di AWS EC2
