@@ -24,3 +24,25 @@ resource "aws_internet_gateway" "gw" {
     Name = "main-igw"
   }
 }
+
+# Membuat Route Table
+resource "aws_route_table" "main" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "main-route-table"
+  }
+}
+
+# Menambahkan Route ke Internet Gateway
+resource "aws_route" "internet_access" {
+  route_table_id         = aws_route_table.main.id
+  destination_cidr_block = "0.0.0.0/0"  # Mengarahkan semua trafik ke internet
+  gateway_id             = aws_internet_gateway.gw.id
+}
+
+# Mengaitkan Route Table ke Subnet
+resource "aws_route_table_association" "subnet_association" {
+  subnet_id      = aws_subnet.subnet.id
+  route_table_id = aws_route_table.main.id
+}

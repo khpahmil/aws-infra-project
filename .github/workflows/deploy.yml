@@ -36,8 +36,11 @@ jobs:
       - name: Initialize Terraform
         run: cd terraform && terraform init
 
-      - name: Run Terraform Plan
-        run: cd terraform && terraform plan
+      - name: destroy Terraform
+        run: cd terraform && terraform destroy
 
-      - name: Apply Terraform
-        run: cd terraform && terraform apply -auto-approve
+     # - name: Run Terraform Plan
+     #   run: cd terraform && terraform plan
+
+      #- name: Apply Terraform
+      #  run: cd terraform && terraform apply -auto-approve
