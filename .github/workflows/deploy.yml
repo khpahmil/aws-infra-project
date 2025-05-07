@@ -41,24 +41,3 @@ jobs:
 
       - name: Apply Terraform
         run: cd terraform && terraform apply -auto-approve
-
-
-  ansible:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Ansible
-        run: sudo apt-get install -y ansible
-
-      - name: Set AWS credentials
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          echo "AWS credentials set"
-
-      - name: Run Ansible Playbook
-        run: ansible-playbook -i inventory/hosts playbook.yml
