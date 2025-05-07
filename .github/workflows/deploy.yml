@@ -16,6 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: List files in the current directory
+        run: ls -al
+
       - name: Move to terraform directory
         run: cd terraform  # Ganti 'terraform' dengan folder yang sesuai
 
