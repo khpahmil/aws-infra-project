@@ -5,7 +5,7 @@ resource "aws_instance" "example" {
   key_name = "pahmil"
 
   subnet_id = aws_subnet.subnet.id
-  security_group = aws_security_group.allow_ssh_http.id
+  security_groups= aws_security_group.allow_ssh_http.id
 
   tags = {
     Name = "example-instance"
