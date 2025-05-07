@@ -37,7 +37,7 @@ jobs:
         run: cd terraform && terraform init
 
       - name: destroy Terraform
-        run: cd terraform && terraform destroy
+        run: cd terraform && terraform destroy -auto-approve
 
      # - name: Run Terraform Plan
      #   run: cd terraform && terraform plan
