@@ -1,0 +1,36 @@
+terraform:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up AWS credentials
+        run: |
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+          echo "AWS_DEFAULT_REGION=ap-southeast-1" >> $GITHUB_ENV  # Ganti dengan region yang sesuai
+          
+      - name: List files in the current directory
+        run: ls -al
+
+      - name: Move to terraform directory
+        run: cd terraform  # Ganti 'terraform' dengan folder yang sesuai
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.5
+
+      - name: Initialize Terraform
+        run: cd terraform && terraform init
+
+      - name: Run Terraform Plan
+        run: cd terraform && terraform plan
+
+      - name: Apply Terraform
+        run: cd terraform && terraform apply -auto-approve
+      
+      - name: Get EC2 public IP
+        id: ec2_ip
+        run: echo "EC2_PUBLIC_IP=$(terraform output -raw ec2_public_ip)" >> $GITHUB_ENV
