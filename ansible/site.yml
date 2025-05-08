@@ -1,6 +1,5 @@
-
 - name: Provision EC2
-  hosts: tag_Name_my-ec2
+  hosts: ec2-instance  # Ganti ke nama host yang sesuai dengan inventory
   become: true
   tasks:
     - name: Update apt cache
